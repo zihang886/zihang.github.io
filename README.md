@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <htm1>
 <body>
 <h1>Zihang Wang</h1>
