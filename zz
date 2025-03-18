@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>World Cup Visualizations</title>
+  <style>
+    #vis.vega-embed {
+      width: 100%;
+      display: flex;
+    }
+    #vis.vega-embed details,
+    #vis.vega-embed details summary {
+      position: relative;
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@5.16.3"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+<body>
+  <h1>World Cup Data Visualizations</h1>
+  
+  <h2>1. Goals of World Cup Winners since 1950</h2>
+  <iframe src="https://zihang.github.io/visualization1.html" width="100%" height="500px"></iframe>
+  
+  <h2>2. Matchups of World Cup Winners</h2>
+  <iframe src="https://zihang.github.io/visualization2.html" width="100%" height="800px"></iframe>
+  
+  <h2>3. Timing of World Cup Goals</h2>
+  <iframe src="https://zihang.github.io/visualization3.html" width="100%" height="500px"></iframe>
+  
+  <h2>4. Zooming in on Goals of World Cup Winners since 1950</h2>
+  <iframe src="https://zihang.github.io/visualization4.html" width="100%" height="500px"></iframe>
+  
+  <h2>5. Vega-Lite Visualization</h2>
+  <div id="vis"></div>
+  
+  <script>
+    (function(vegaEmbed) {
+      var spec = { "your Vega-Lite spec here" };
+      var embedOpt = { "mode": "vega-lite" };
+
+      function showError(el, error){
+          el.innerHTML = ('<div style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+      const el = document.getElementById('vis');
+      vegaEmbed("#vis", spec, embedOpt)
+        .catch(error => showError(el, error));
+    })(vegaEmbed);
+  </script>
+</body>
+</html>
