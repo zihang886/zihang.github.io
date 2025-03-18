@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    #vis.vega-embed {
+      width: 100%;
+      display: flex;
+    }
+
+    #vis.vega-embed details,
+    #vis.vega-embed details summary {
+      position: relative;
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@5.16.3"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+<body>
+  <div id="vis"></div>
+  <script>
+    (function(vegaEmbed) {
+      var spec = {"config": {"view": {"continuousWidth": 300, "continuousHeight": 300, "strokeWidth": 0}, "title": {"anchor": "start"}}, "layer": [{"mark": {"type": "bar"}, "encoding": {"opacity": {"condition": {"param": "param_1", "value": 1}, "value": 0.4}, "tooltip": {"field": "average_goals", "format": ".2f", "type": "quantitative"}, "x": {"axis": {"tickCount": 10}, "field": "average_goals", "scale": {"domain": [0, 4.5]}, "title": "Avg Goals Per Match", "type": "quantitative"}, "y": {"axis": {"labelAngle": 0}, "field": "year_winner", "title": null, "type": "nominal"}}, "name": "view_1"}, {"mark": {"type": "rule", "color": "darkred", "size": 3}, "encoding": {"x": {"aggregate": "mean", "field": "average_goals", "type": "quantitative"}}, "transform": [{"filter": {"param": "param_1"}}]}, {"mark": {"type": "text", "align": "left", "color": "darkred", "dx": 8, "fontSize": 13}, "encoding": {"text": {"aggregate": "mean", "field": "average_goals", "format": ".2f", "type": "quantitative"}, "x": {"aggregate": "mean", "field": "average_goals", "type": "quantitative"}}, "transform": [{"filter": {"param": "param_1"}}]}], "data": {"name": "data-a00e7d29b58c3a03619a068509bcc3cc"}, "height": 420, "params": [{"name": "param_1", "select": {"type": "interval", "encodings": ["y"]}, "views": ["view_1"]}], "title": {"text": ["World Cup Champions' Goal Averages"], "subtitle": ["Per-Match Goal Averages for Each Winning Team Since 1950"]}, "width": 520, "$schema": "https://vega.github.io/schema/vega-lite/v5.16.3.json", "datasets": {"data-a00e7d29b58c3a03619a068509bcc3cc": [{"year": 1950, "winner": "Uruguay", "average_goals": 3.75, "year_winner": "1950 - Uruguay"}, {"year": 1954, "winner": "Germany", "average_goals": 4.166666666666667, "year_winner": "1954 - Germany"}, {"year": 1958, "winner": "Brazil", "average_goals": 2.6666666666666665, "year_winner": "1958 - Brazil"}, {"year": 1962, "winner": "Brazil", "average_goals": 2.3333333333333335, "year_winner": "1962 - Brazil"}, {"year": 1966, "winner": "England", "average_goals": 1.8333333333333333, "year_winner": "1966 - England"}, {"year": 1970, "winner": "Brazil", "average_goals": 3.1666666666666665, "year_winner": "1970 - Brazil"}, {"year": 1974, "winner": "Germany", "average_goals": 1.8571428571428572, "year_winner": "1974 - Germany"}, {"year": 1978, "winner": "Argentina", "average_goals": 2.142857142857143, "year_winner": "1978 - Argentina"}, {"year": 1982, "winner": "Italy", "average_goals": 1.7142857142857142, "year_winner": "1982 - Italy"}, {"year": 1986, "winner": "Argentina", "average_goals": 2.0, "year_winner": "1986 - Argentina"}, {"year": 1990, "winner": "Germany", "average_goals": 2.142857142857143, "year_winner": "1990 - Germany"}, {"year": 1994, "winner": "Brazil", "average_goals": 1.5714285714285714, "year_winner": "1994 - Brazil"}, {"year": 1998, "winner": "France", "average_goals": 2.142857142857143, "year_winner": "1998 - France"}, {"year": 2002, "winner": "Brazil", "average_goals": 2.5714285714285716, "year_winner": "2002 - Brazil"}, {"year": 2006, "winner": "Italy", "average_goals": 1.7142857142857142, "year_winner": "2006 - Italy"}, {"year": 2010, "winner": "Spain", "average_goals": 1.1428571428571428, "year_winner": "2010 - Spain"}, {"year": 2014, "winner": "Germany", "average_goals": 2.5714285714285716, "year_winner": "2014 - Germany"}, {"year": 2018, "winner": "France", "average_goals": 2.0, "year_winner": "2018 - France"}, {"year": 2022, "winner": "Argentina", "average_goals": 2.142857142857143, "year_winner": "2022 - Argentina"}]}};
+      var embedOpt = {"mode": "vega-lite"};
+
+      function showError(el, error){
+          el.innerHTML = ('<div style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+      const el = document.getElementById('vis');
+      vegaEmbed("#vis", spec, embedOpt)
+        .catch(error => showError(el, error));
+    })(vegaEmbed);
+
+  </script>
+</body>
+</html>
