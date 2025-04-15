@@ -114,7 +114,7 @@ def update_treemap(color_metric):
     )
 
     fig.update_traces(
-        hovertemplate="<b>词语（%{customdata[0]}）</b><br>" +
+        hovertemplate="<b>Word（%{customdata[0]}）</b><br>" +
                       "Count: %{customdata[1]}<br>" +
                       "Avg Sentiment Score: %{customdata[2]:.3f}<br>" +
                       "Avg Comment Score: %{customdata[3]:.2f}<extra></extra>"
