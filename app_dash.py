@@ -5,6 +5,7 @@ import plotly.express as px
 import re
 from collections import defaultdict
 from sklearn.feature_extraction.text import ENGLISH_STOP_WORDS
+import os
 
 # === Load and clean dataset ===
 df = pd.read_csv("https://docs.google.com/spreadsheets/d/1HvxKGtsi1h91f5Zna3zmQ41zijuE9uwOhv6hTDLlaVA/export?format=csv")
@@ -143,6 +144,8 @@ def display_comments(clickData):
         ])
     ])
 
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 8050))
+    app.run(host="0.0.0.0", port=port)
 
