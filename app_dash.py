@@ -8,7 +8,7 @@ from sklearn.feature_extraction.text import ENGLISH_STOP_WORDS
 import os
 
 # === Load and clean dataset ===
-df = pd.read_csv("https://docs.google.com/spreadsheets/d/1HvxKGtsi1h91f5Zna3zmQ41zijuE9uwOhv6hTDLlaVA/export?format=csv")
+df = pd.read_csv("https://docs.google.com/spreadsheets/d/1HvxKGtsi1h91f5Zna3zmQ41zijuE9uwOhv6hTDLlaVA/export?format=csv", nrows=10000)
 df = df.dropna(subset=['body', 'sentiment', 'score'])
 
 def clean_text(text):
