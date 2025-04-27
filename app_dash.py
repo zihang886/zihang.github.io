@@ -7,7 +7,6 @@ from collections import defaultdict
 from sklearn.feature_extraction.text import ENGLISH_STOP_WORDS
 import os
 
-# === Load and clean dataset ===
 df = pd.read_csv(
     "https://docs.google.com/spreadsheets/d/1HvxKGtsi1h91f5Zna3zmQ41zijuE9uwOhv6hTDLlaVA/export?format=csv",
     nrows=10000
@@ -21,7 +20,6 @@ def clean_text(text):
     text = re.sub(r"[^a-z\s]", " ", text)
     return text
 
-# === Extract word stats for treemap ===
 topics = {
     "climate change": ["climate", "change"],
     "global warming": ["global", "warming"],
@@ -60,7 +58,6 @@ for topic, keywords in topics.items():
 
 df_words = pd.DataFrame(records)
 
-# === Build app ===
 app = dash.Dash(__name__)
 app.title = "Climate Change Treemap Explorer"
 
@@ -94,7 +91,6 @@ app.layout = html.Div([
     html.Div(id="comments-output", style={"marginTop": "30px"})
 ])
 
-# === Update treemap figure based on selected metric ===
 @app.callback(
     Output("treemap", "figure"),
     Input("color-metric", "value")
@@ -120,14 +116,19 @@ def update_treemap(color_metric):
                       "Avg Comment Score: %{customdata[3]:.2f}<extra></extra>"
     )
 
+    fig.update_layout(
+        paper_bgcolor='rgba(0,0,0,0)',  # Transparent outer background
+        plot_bgcolor='rgba(0,0,0,0)'    # Transparent inner plotting area
+    )
+
     fig.update_coloraxes(colorbar_title={
         "count": "Count",
         "avg_sentiment_score": "Avg Sentiment",
         "avg_comment_score": "Avg Comment Score"
     }[color_metric])
+
     return fig
 
-# === Show 5 random comments with highlighted word ===
 @app.callback(
     Output("comments-output", "children"),
     Input("treemap", "clickData")
@@ -159,7 +160,6 @@ def display_comments(clickData):
         ])
     ])
 
-# === Run on server ===
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8051))
     app.run(host="0.0.0.0", port=port)
